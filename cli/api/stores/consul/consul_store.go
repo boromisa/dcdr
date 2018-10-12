@@ -3,9 +3,9 @@ package consul
 import (
 	"github.com/hashicorp/consul/api"
 	"github.com/hashicorp/consul/watch"
-	"github.com/vsco/dcdr/cli/api/stores"
-	"github.com/vsco/dcdr/cli/printer"
-	"github.com/vsco/dcdr/config"
+	"github.com/boromisa/dcdr/cli/api/stores"
+	"github.com/boromisa/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/config"
 )
 
 type ConsulKVIFace interface {

@@ -57,6 +57,7 @@ type Feature struct {
 	Namespace   string      `json:"namespace"`
 	Scope       string      `json:"scope"`
 	Value       interface{} `json:"value"`
+	IDList      []string    `json:"id_list"`
 	Comment     string      `json:"comment"`
 	UpdatedBy   string      `json:"updated_by"`
 }
@@ -81,7 +82,8 @@ func (f *Feature) ScopedKey() string {
 }
 
 // NewFeature create a Feature
-func NewFeature(name string, value interface{}, comment string, user string, scope string, ns string) (f *Feature) {
+//
+func NewFeature(name string, value interface{}, comment string, user string, scope string, ns string, idList []string) (f *Feature) {
 	var ft FeatureType
 
 	switch value.(type) {
@@ -99,6 +101,7 @@ func NewFeature(name string, value interface{}, comment string, user string, sco
 		UpdatedBy:   user,
 		Scope:       scope,
 		Namespace:   ns,
+		IDList: 	idList,
 	}
 
 	return

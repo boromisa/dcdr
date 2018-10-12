@@ -5,13 +5,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vsco/dcdr/cli/api/stores"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/cli/api/stores"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
 )
 
 func TestClientSet(t *testing.T) {
-	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n", []string{"a", "b"})
 
 	c := New(stores.NewMockStore(ft, nil), &stores.MockRepo{}, config.DefaultConfig(), nil)
 
@@ -21,8 +21,8 @@ func TestClientSet(t *testing.T) {
 }
 
 func TestClientSetExisting(t *testing.T) {
-	update := models.NewFeature("test", nil, "c", "u", "s", "n")
-	orig := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	update := models.NewFeature("test", nil, "c", "u", "s", "n", []string{"a", "b"})
+	orig := models.NewFeature("test", 0.5, "c", "u", "s", "n", []string{"a", "b"})
 
 	c := New(stores.NewMockStore(orig, nil), &stores.MockRepo{}, config.DefaultConfig(), nil)
 
@@ -32,7 +32,7 @@ func TestClientSetExisting(t *testing.T) {
 }
 
 func TestList(t *testing.T) {
-	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n", []string{"a", "b"})
 	cs := stores.NewMockStore(ft, nil)
 	c := New(cs, &stores.MockRepo{}, config.DefaultConfig(), nil)
 
@@ -43,7 +43,7 @@ func TestList(t *testing.T) {
 }
 
 func TestGet(t *testing.T) {
-	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n", []string{"a", "b"})
 	cs := stores.NewMockStore(ft, nil)
 	c := New(cs, &stores.MockRepo{}, config.DefaultConfig(), nil)
 
@@ -66,7 +66,7 @@ func TestNilGet(t *testing.T) {
 }
 
 func TestSet(t *testing.T) {
-	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n", []string{"a", "b"})
 	cs := stores.NewMockStore(ft, nil)
 	c := New(cs, &stores.MockRepo{}, config.DefaultConfig(), nil)
 
@@ -76,7 +76,7 @@ func TestSet(t *testing.T) {
 }
 
 func TestSetErrorOnNilValue(t *testing.T) {
-	ft := models.NewFeature("test", nil, "c", "u", "s", "n")
+	ft := models.NewFeature("test", nil, "c", "u", "s", "n", []string{"a", "b"})
 	cs := stores.NewMockStore(nil, nil)
 	c := New(cs, &stores.MockRepo{}, config.DefaultConfig(), nil)
 
@@ -86,8 +86,8 @@ func TestSetErrorOnNilValue(t *testing.T) {
 }
 
 func TestTypeChangeErrorSet(t *testing.T) {
-	orig := models.NewFeature("test", 0.5, "c", "u", "s", "n")
-	bad := models.NewFeature("test", false, "c", "u", "s", "n")
+	orig := models.NewFeature("test", 0.5, "c", "u", "s", "n", []string{"a", "b"})
+	bad := models.NewFeature("test", false, "c", "u", "s", "n", []string{"a", "b"})
 
 	cs := stores.NewMockStore(orig, nil)
 	c := New(cs, nil, config.DefaultConfig(), nil)
@@ -97,7 +97,7 @@ func TestTypeChangeErrorSet(t *testing.T) {
 }
 
 func TestSetWithError(t *testing.T) {
-	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n", []string{"a", "b"})
 	e := errors.New("")
 	cs := stores.NewMockStore(ft, e)
 	c := New(cs, nil, config.DefaultConfig(), nil)
@@ -108,7 +108,7 @@ func TestSetWithError(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n",[]string{"a", "b"})
 	cs := stores.NewMockStore(ft, nil)
 	c := New(cs, &stores.MockRepo{}, config.DefaultConfig(), nil)
 
@@ -118,7 +118,7 @@ func TestDelete(t *testing.T) {
 }
 
 func TestDeleteWithError(t *testing.T) {
-	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n")
+	ft := models.NewFeature("test", 0.5, "c", "u", "s", "n",[]string{"a", "b"})
 	e := errors.New("")
 	cs := stores.NewMockStore(ft, e)
 	c := New(cs, &stores.MockRepo{}, config.DefaultConfig(), nil)

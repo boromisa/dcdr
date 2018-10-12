@@ -10,8 +10,8 @@ import (
 	"log"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
 )
 
 func NewTestClient() (c *Client) {
@@ -111,7 +111,7 @@ func TestScopedMap(t *testing.T) {
 	c := NewTestClient().SetFeatureMap(m)
 	c2 := c.WithScopes(scopes...)
 
-	assert.False(t, c2.ScopedMap().Dcdr.FeatureScopes["bool"].(bool))
+	assert.False(t, c2.ScopedMap().Dcdr.FeatureScopes["bool"].Value.(bool))
 	assert.Equal(t, 0.5, c2.ScopedMap().Dcdr.FeatureScopes["float"])
 }
 

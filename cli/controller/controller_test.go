@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/tucnak/climax"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
 )
 
 const (

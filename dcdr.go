@@ -4,13 +4,13 @@ import (
 	"os"
 
 	"github.com/PagerDuty/godspeed"
-	"github.com/vsco/dcdr/cli"
-	"github.com/vsco/dcdr/cli/api"
-	"github.com/vsco/dcdr/cli/api/resolver"
-	"github.com/vsco/dcdr/cli/controller"
-	"github.com/vsco/dcdr/cli/printer"
-	"github.com/vsco/dcdr/cli/repo"
-	"github.com/vsco/dcdr/config"
+	"github.com/boromisa/dcdr/cli"
+	"github.com/boromisa/dcdr/cli/api"
+	"github.com/boromisa/dcdr/cli/api/resolver"
+	"github.com/boromisa/dcdr/cli/controller"
+	"github.com/boromisa/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/cli/repo"
+	"github.com/boromisa/dcdr/config"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-package: github.com/vsco/dcdr
+package: github.com/boromisa/dcdr
 
 import:
     # Runtime dependencies

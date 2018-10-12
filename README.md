@@ -95,9 +95,9 @@ It's nice to know when changes are happening. Decider can be configured to emit 
 ## Installation
 
 * Install via `go get`
-	* 	`go get -a github.com/vsco/dcdr`
+	* 	`go get -a github.com/boromisa/dcdr`
 * Install via release
-	*  [https://github.com/vsco/dcdr/releases](https://github.com/vsco/dcdr/releases)
+	*  [https://github.com/boromisa/dcdr/releases](https://github.com/boromisa/dcdr/releases)
 * Build from source
 
 ```
@@ -335,7 +335,7 @@ Included in this package is a Go client. By default this client uses the same [`
 ### Require and initialize the client
 
 ```Go
-import "github.com/vsco/dcdr/client"
+import "github.com/boromisa/dcdr/client"
 
 // Initialize a client with the default configuration
 client, err := client.NewDefault()
@@ -427,7 +427,7 @@ if scopedClient.IsAvailable("another-feature") {
 
 This method is used when a feature needs to be rolled out to only a percentage of requests. Functionally `IsAvailableForID` works exactly as `IsAvailable` with the exception of its `id` argument. Both the `feature` and `id` arguments are joined to generate a `uint64` using `hash/crc32`. Which when combined with the `float64` value of `feature` can compute into what percentile a given request falls.
 
-See the [`Client#withinPercentile`](https://github.com/vsco/dcdr/blob/master/client/client.go#L224) method for more details.
+See the [`Client#withinPercentile`](https://github.com/boromisa/dcdr/blob/master/client/client.go#L224) method for more details.
 
 #### Using percentiles
 
@@ -545,7 +545,7 @@ func ScopedCountryCode(c client.IFace) func(http.Handler) http.Handler {
 }
 ```
 
-A full working example can be found in [server/demo/main.go](https://github.com/vsco/dcdr/blob/master/server/demo/main.go).
+A full working example can be found in [server/demo/main.go](https://github.com/boromisa/dcdr/blob/master/server/demo/main.go).
 
 ## Configuration
 

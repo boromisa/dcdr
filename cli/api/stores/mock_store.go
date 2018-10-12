@@ -1,6 +1,6 @@
 package stores
 
-import "github.com/vsco/dcdr/models"
+import "github.com/boromisa/dcdr/models"
 
 type MockStore struct {
 	Item  *KVByte

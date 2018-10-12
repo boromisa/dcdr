@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vsco/dcdr/cli/api/ioutil2"
+	"github.com/boromisa/dcdr/cli/api/ioutil2"
 )
 
 const WatchPath = "./test-watcher"

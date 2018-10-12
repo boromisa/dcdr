@@ -6,7 +6,7 @@ import (
 	"errors"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vsco/dcdr/config"
+	"github.com/boromisa/dcdr/config"
 )
 
 type MockRedis struct {

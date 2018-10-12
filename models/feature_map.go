@@ -22,7 +22,7 @@ type Info struct {
 }
 
 // FeatureScopes the map of percentile and boolean K/Vs.
-type FeatureScopes map[string]interface{}
+type FeatureScopes map[string]*Feature
 
 // Root wrapper struct for `Info` and `Features`.
 type Root struct {
@@ -39,7 +39,7 @@ func EmptyFeatureMap() (fm *FeatureMap) {
 				CurrentSHA: "",
 			},
 			FeatureScopes: FeatureScopes{
-				DefaultScope: make(map[string]interface{}),
+				DefaultScope: &Feature{},
 			},
 		},
 	}
@@ -80,9 +80,9 @@ func (d *Root) InScope(scope string) FeatureScopes {
 	top := d.FeatureScopes
 	for _, s := range scopes {
 		if m, ok := top[s]; ok {
-			top = m.(map[string]interface{})
+			top[m.Key] = m
 		} else {
-			return make(map[string]interface{})
+			return make(map[string]*Feature)
 		}
 	}
 

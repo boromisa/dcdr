@@ -2,7 +2,7 @@ package cli
 
 import (
 	"github.com/tucnak/climax"
-	"github.com/vsco/dcdr/cli/controller"
+	"github.com/boromisa/dcdr/cli/controller"
 )
 
 const Version = "0.3.0"

@@ -5,7 +5,7 @@ import (
 
 	"time"
 
-	"github.com/vsco/dcdr/client"
+	"github.com/boromisa/dcdr/client"
 )
 
 const (

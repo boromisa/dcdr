@@ -8,9 +8,9 @@ import (
 	"strings"
 
 	"github.com/garyburd/redigo/redis"
-	"github.com/vsco/dcdr/cli/api/stores"
-	"github.com/vsco/dcdr/cli/printer"
-	"github.com/vsco/dcdr/config"
+	"github.com/boromisa/dcdr/cli/api/stores"
+	"github.com/boromisa/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/config"
 )
 
 const DefaultAddr = ":6379"

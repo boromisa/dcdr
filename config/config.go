@@ -8,7 +8,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/hcl"
-	"github.com/vsco/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/cli/printer"
 )
 
 const (

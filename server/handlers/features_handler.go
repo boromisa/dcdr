@@ -5,8 +5,8 @@ import (
 
 	"strings"
 
-	"github.com/vsco/dcdr/client"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/client"
+	"github.com/boromisa/dcdr/models"
 )
 
 const (

@@ -3,6 +3,7 @@ package controller
 import (
 	"encoding/json"
 	"os"
+	"strings"
 
 	"errors"
 
@@ -11,13 +12,13 @@ import (
 	"path"
 
 	"github.com/tucnak/climax"
-	"github.com/vsco/dcdr/cli/api"
-	"github.com/vsco/dcdr/cli/printer"
-	"github.com/vsco/dcdr/cli/ui"
-	"github.com/vsco/dcdr/client"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
-	"github.com/vsco/dcdr/server"
+	"github.com/boromisa/dcdr/cli/api"
+	"github.com/boromisa/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/cli/ui"
+	"github.com/boromisa/dcdr/client"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
+	"github.com/boromisa/dcdr/server"
 )
 
 const filePerms = 0775
@@ -208,6 +209,7 @@ func (cc *Controller) Import(ctx climax.Context) int {
 		return 1
 	}
 
+	//TODO(DB) need to see how this mess actually works.
 	var kvs map[string]interface{}
 	err = json.Unmarshal(bts, &kvs)
 
@@ -217,13 +219,20 @@ func (cc *Controller) Import(ctx climax.Context) int {
 	}
 
 	scope, _ := ctx.Get("scope")
+	ids, _ := ctx.Get("ids")
 
+	var stringSlice []string
+
+	if ids != "" {
+		//TODO(DB) build a cleaner place for comma separation
+		stringSlice = strings.Split(ids, "|")
+	}
 	if scope == "" {
 		scope = models.DefaultScope
 	}
 
 	for k, v := range kvs {
-		f := models.NewFeature(k, v, "", "", scope, cc.Config.Namespace)
+		f := models.NewFeature(k, v, "", "", scope, cc.Config.Namespace, stringSlice)
 		err = cc.Client.Set(f)
 
 		if err != nil {
@@ -279,6 +288,10 @@ func (cc *Controller) ParseContext(ctx climax.Context) (*models.Feature, error) 
 	val, _ := ctx.Get("value")
 	cmt, _ := ctx.Get("comment")
 	scp, _ := ctx.Get("scope")
+	ids, _ := ctx.Get("ids")
+
+	//TODO(DB) build a cleaner place for comma separation
+	stringSlice := strings.Split(ids, "|")
 
 	if name == "" {
 		return nil, errNameRequired
@@ -301,7 +314,7 @@ func (cc *Controller) ParseContext(ctx climax.Context) (*models.Feature, error) 
 		}
 	}
 
-	f := models.NewFeature(name, v, cmt, cc.Config.Username, scp, cc.Config.Namespace)
+	f := models.NewFeature(name, v, cmt, cc.Config.Username, scp, cc.Config.Namespace, stringSlice)
 	f.FeatureType = ft
 
 	return f, nil

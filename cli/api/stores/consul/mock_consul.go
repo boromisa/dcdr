@@ -2,7 +2,7 @@ package consul
 
 import (
 	"github.com/hashicorp/consul/api"
-	"github.com/vsco/dcdr/cli/api/stores"
+	"github.com/boromisa/dcdr/cli/api/stores"
 )
 
 type MockConsul struct {

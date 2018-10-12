@@ -11,12 +11,12 @@ import (
 	"time"
 
 	"github.com/PagerDuty/godspeed"
-	"github.com/vsco/dcdr/cli/api/ioutil2"
-	"github.com/vsco/dcdr/cli/api/stores"
-	"github.com/vsco/dcdr/cli/printer"
-	"github.com/vsco/dcdr/cli/repo"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/cli/api/ioutil2"
+	"github.com/boromisa/dcdr/cli/api/stores"
+	"github.com/boromisa/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/cli/repo"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
 )
 
 const InfoNameSpace = "info"
@@ -373,10 +373,10 @@ func (c *Client) SendStatEvent(f *models.Feature, delete bool) error {
 // KVsToFeatures helper for unmarshalling `KVBytes` to a `FeatureMap`
 func (c *Client) KVsToFeatureMap(kvb stores.KVBytes) (*models.FeatureMap, error) {
 	fm := models.EmptyFeatureMap()
+	var ft models.Feature
 
 	for _, v := range kvb {
 		var key string
-		var value interface{}
 
 		if v.Key == fmt.Sprintf("%s/%s", c.Namespace(), InfoNameSpace) {
 			var info models.Info
@@ -388,7 +388,6 @@ func (c *Client) KVsToFeatureMap(kvb stores.KVBytes) (*models.FeatureMap, error)
 
 			fm.Dcdr.Info = &info
 		} else {
-			var ft models.Feature
 			err := json.Unmarshal(v.Bytes, &ft)
 
 			if err != nil {
@@ -397,26 +396,25 @@ func (c *Client) KVsToFeatureMap(kvb stores.KVBytes) (*models.FeatureMap, error)
 			}
 
 			key = strings.Replace(v.Key, fmt.Sprintf("%s/features/", c.Namespace()), "", 1)
-			value = ft.Value
 		}
 
-		explode(fm.Dcdr.FeatureScopes, key, value)
+		explode(fm.Dcdr.FeatureScopes, key, &ft)
 	}
 
 	return fm, nil
 }
 
-func explode(m models.FeatureScopes, k string, v interface{}) {
+func explode(m models.FeatureScopes, k string, v *models.Feature) {
 	if strings.Contains(k, "/") {
 		pts := strings.Split(k, "/")
 		top := pts[0]
 		key := strings.Join(pts[1:], "/")
 
 		if _, ok := m[top]; !ok {
-			m[top] = make(map[string]interface{})
+			m[top] = &models.Feature{}
 		}
 
-		explode(m[top].(map[string]interface{}), key, v)
+		explode(m, key, v)
 	} else {
 		if k != "" {
 			m[k] = v

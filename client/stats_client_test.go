@@ -6,9 +6,9 @@ import (
 	"strings"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vsco/dcdr/client/stats"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/client/stats"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
 )
 
 type MockStatter struct {

@@ -3,11 +3,11 @@ package resolver
 import (
 	"log"
 
-	"github.com/vsco/dcdr/cli/api/stores"
-	"github.com/vsco/dcdr/cli/api/stores/consul"
-	"github.com/vsco/dcdr/cli/api/stores/etcd"
-	"github.com/vsco/dcdr/cli/api/stores/redis"
-	"github.com/vsco/dcdr/config"
+	"github.com/boromisa/dcdr/cli/api/stores"
+	"github.com/boromisa/dcdr/cli/api/stores/consul"
+	"github.com/boromisa/dcdr/cli/api/stores/etcd"
+	"github.com/boromisa/dcdr/cli/api/stores/redis"
+	"github.com/boromisa/dcdr/config"
 )
 
 func LoadStore(cfg *config.Config) stores.IFace {

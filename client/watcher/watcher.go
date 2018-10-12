@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/vsco/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/cli/printer"
 )
 
 // IFace interface for the the file system watcher.

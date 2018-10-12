@@ -8,9 +8,9 @@ import (
 
 	"log"
 
-	"github.com/vsco/dcdr/client"
-	"github.com/vsco/dcdr/server"
-	"github.com/vsco/dcdr/server/handlers"
+	"github.com/boromisa/dcdr/client"
+	"github.com/boromisa/dcdr/server"
+	"github.com/boromisa/dcdr/server/handlers"
 )
 
 const AuthorizationHeader = "Authorization"

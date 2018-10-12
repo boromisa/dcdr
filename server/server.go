@@ -7,10 +7,10 @@ import (
 
 	gh "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/vsco/dcdr/client"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/server/handlers"
-	"github.com/vsco/dcdr/server/middleware"
+	"github.com/boromisa/dcdr/client"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/server/handlers"
+	"github.com/boromisa/dcdr/server/middleware"
 )
 
 // Middleware helper type for handlers that receive a `Client`.

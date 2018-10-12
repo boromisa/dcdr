@@ -9,11 +9,11 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/vsco/dcdr/client"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
-	"github.com/vsco/dcdr/server/handlers"
-	"github.com/vsco/dcdr/server/middleware"
+	"github.com/boromisa/dcdr/client"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
+	"github.com/boromisa/dcdr/server/handlers"
+	"github.com/boromisa/dcdr/server/middleware"
 	http_assert "github.com/vsco/http-test/assert"
 	"github.com/vsco/http-test/builder"
 )

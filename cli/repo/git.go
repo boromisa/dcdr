@@ -9,8 +9,8 @@ import (
 
 	"io/ioutil"
 
-	"github.com/vsco/dcdr/cli/printer"
-	"github.com/vsco/dcdr/config"
+	"github.com/boromisa/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/config"
 )
 
 type IFace interface {

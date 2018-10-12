@@ -6,10 +6,10 @@ import (
 
 	"os"
 
-	"github.com/vsco/dcdr/cli/printer"
-	"github.com/vsco/dcdr/client/watcher"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/cli/printer"
+	"github.com/boromisa/dcdr/client/watcher"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
 )
 
 // IFace interface for Decider Clients
@@ -160,9 +160,10 @@ func (c *Client) FeatureExists(feature string) bool {
 func (c *Client) IsAvailable(feature string) bool {
 	val, exists := c.Features()[feature]
 
-	switch val.(type) {
+
+	switch val.Value.(type) {
 	case bool:
-		return exists && val.(bool)
+		return exists && val.Value.(bool)
 	default:
 		return false
 	}
@@ -173,9 +174,9 @@ func (c *Client) IsAvailable(feature string) bool {
 func (c *Client) IsAvailableForID(feature string, id uint64) bool {
 	val, exists := c.Features()[feature]
 
-	switch val.(type) {
+	switch val.Value.(type) {
 	case float64, int:
-		return exists && c.withinPercentile(id, val.(float64), feature)
+		return exists && c.withinPercentile(id, val.Value.(float64), feature)
 	default:
 		return false
 	}
@@ -206,9 +207,9 @@ func (c *Client) ScaleValue(feature string, min float64, max float64) float64 {
 		return min
 	}
 
-	switch val.(type) {
+	switch val.Value.(type) {
 	case float64, int:
-		return min + (max-min)*val.(float64)
+		return min + (max-min)*val.Value.(float64)
 	default:
 		return min
 	}

@@ -1,9 +1,9 @@
 package mock
 
 import (
-	"github.com/vsco/dcdr/client"
-	"github.com/vsco/dcdr/config"
-	"github.com/vsco/dcdr/models"
+	"github.com/boromisa/dcdr/client"
+	"github.com/boromisa/dcdr/config"
+	"github.com/boromisa/dcdr/models"
 )
 
 // New creates a `Client` with an empty `FeatureMap` and `Config`.
